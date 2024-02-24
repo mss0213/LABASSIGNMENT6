@@ -6,20 +6,24 @@
 int search(int numbers[], int low, int high, int value) 
 {
    if (low > high) {
-          return -1; // Base case: value not found
+          return -1; // This is our base case, which just means our value isn't sorted
       }
 
-  int mid = low + (high - low) / 2;
+  int mid = low + (high - low) / 2; // Formula for midpoint
 
   if (numbers[mid] == value) {
           return mid; // Base case: value found at mid index
-      } else if (numbers[mid] < value) {
+      } else if (numbers[mid] < value) { //If our number is less than the value we want, we need to go to the right of the array
           // Search the right half of the array
-          return search(numbers, mid + 1, high, value);
-      } else {
+          return search(numbers, mid + 1, high, value); // Recursive function using the right half of the array
+      } else if (numbers[mid] > value){ //If our number is greater than the value we want, we need to go to the left of the array
           // Search the left half of the array
-          return search(numbers, low, mid - 1, value);
+          return search(numbers, low, mid - 1, value); // Recursive function using the left half of the array
       }
+        else{ 
+          return mid; // Targets our low == high case
+      }
+      
   }
 
 
